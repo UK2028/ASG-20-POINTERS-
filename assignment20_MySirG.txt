@@ -1,0 +1,325 @@
+NAME-UDIT KHANDELWAL						ASSIGNMENT-20 POINTERS
+
+
+
+1. Write a function to swap values of two int variables of calling function. (TSRS)
+
+#include<stdio.h>
+#include<conio.h>
+int swap(int *,int *);
+int main()
+{
+    int a,b;
+    printf("enter two numbers:\n");
+    printf("enter value of a:");
+    scanf("%d",&a);
+    printf("enter value of b:");
+    scanf("%d",&b);
+    swap(&a,&b);
+    printf("value of a is: %d\n",a);
+    printf("value of b is: %d",b);
+    getch();
+}
+int swap(int *x,int *y)
+{
+    int temp;
+    temp=*x;
+    *x=*y;
+    *y=temp;
+}
+
+
+2. Write a function to swap strings of two char arrays of calling functions. (TSRS)
+
+#include<stdio.h>
+#include<conio.h>
+#include<string.h>
+void swap(char *a,char *b);
+int main()
+{
+    char str1[100],str2[100];
+    printf("enter two string:\n");
+    printf("enter string1:");
+    gets(str1);
+    printf("enter string2:");
+    gets(str2);
+    swap(str1,str2);
+    getch();
+}
+void swap(char *a,char *b)
+{
+    char *temp;
+    temp=a;
+    a=b;
+    b=temp;
+    printf("string1 is:");
+    while(*a!='\0')
+    {
+        printf("%c",*a);
+        a++;
+    }
+    printf("\nstring2 is:");
+    while(*b!='\0')
+    {
+        printf("%c",*b);
+        b++;
+    }
+}
+
+
+3. Write a function to sort an array of int type values. [ void sort(int *ptr,int size); ]
+
+#include<stdio.h>
+#include<conio.h>
+void sort(int *p,int n);
+int main()
+{
+    int size,i;
+    printf("enter size:");
+    scanf("%d",&size);
+    int arr[size];
+    printf("enter array:");
+    for(i=0;i<size;i++)
+    {
+        scanf("%d",&arr[i]);
+    }
+    sort(arr,size);
+    printf("array after sorting is:\n");
+    for(i=0;i<size;i++)
+    {
+        printf("%d ",arr[i]);
+    }
+    getch();
+}
+void sort(int *p,int n)
+{
+    int i,j,small,temp;
+    for(i=0;i<n-1;i++)
+    {
+        small=i;
+        for(j=i+1;j<n;j++)
+        {
+            if(*(p+i)>*(p+j))
+            {
+                small=j;
+            }
+        }
+        if(i!=small)
+        {
+            temp=*(p+i);
+            *(p+i)=*(p+small);
+            *(p+small)=temp;
+        }
+    }
+}
+
+
+4. Write a program in C to demonstrate how to handle the pointers in the program.
+
+#include<stdio.h>
+#include<conio.h>
+int main()
+{
+    int x=5,y=10;
+    int *ptr1=&x,*ptr2=&y;
+    printf("value of x=%d and y=%d\n",*ptr1,*ptr2);
+    printf("address of x is %p and y is %p\n",&x,&y);
+    printf("address of x is %p and y is %p",ptr1,ptr2);
+    getch();
+}
+
+
+5. Write a program to find the maximum number between two numbers using a pointer
+
+#include<stdio.h>
+#include<conio.h>
+void max(int*,int*);
+int main()
+{
+    int x,y;
+    printf("enter two values\n");
+    printf("enter value of x=");
+    scanf("%d",&x);
+    printf("enter value of y=");
+    scanf("%d",&y);
+    max(&x,&y);
+    getch();
+}
+void max(int *p,int *q)
+{
+    if(*p>*q)
+        printf("x=%d is greater than y=%d",*p,*q);
+    else
+        printf("y=%d is greater than x=%d",*q,*p);
+}
+
+
+6. Write a program to calculate the length of the string using a pointer
+
+#include<stdio.h>
+#include<conio.h>
+int length(char*);
+int main()
+{
+    char str[100];
+    int len;
+    printf("enter string:");
+    gets(str);
+    len=length(str);
+    printf("length of string is:%d",len);
+    getch();
+}
+int length(char *ptr)
+{
+    int i=0;
+    while(*ptr)
+    {
+        ptr++;
+        i++;
+    }
+    return i;
+}
+
+
+7. Write a program to count the number of vowels and consonants in a string using a
+pointer.
+
+#include<stdio.h>
+#include<conio.h>
+#include<string.h>
+int count(char *,char *);
+int spaces(char *);
+int main()
+{
+    char str[100],vowels[]={"aeiou"};
+    int count_vowels,count_consonants,count_spaces;
+    printf("enter string:");
+    gets(str);
+    count_vowels=count(str,vowels);
+    count_spaces=spaces(str);
+    count_consonants=strlen(str)-count_vowels-count_spaces;
+    printf("no. of vowels=%d\n",count_vowels);
+    printf("no. of consonants=%d",count_consonants);
+    getch();
+}
+int count(char *s,char *v)
+{
+    int i=0,j=0,num_vowels=0;
+    while(s[i]!='\0')
+    {
+        j=0;
+        while(v[j]!='\0')
+        {
+            if(s[i]==v[j])
+                num_vowels+=1;
+            j++;
+        }
+        i++;
+    }
+    return num_vowels;
+}
+int spaces(char *ptr)
+{
+    int i=0,num_spaces=0;
+    while(ptr[i]!='\0')
+    {
+        if(ptr[i]==' ')
+            num_spaces+=1;
+        i++;
+    }
+    return num_spaces;
+}
+
+
+8. Write a program to compute the sum of all elements in an array using pointers.
+
+#include<stdio.h>
+#include<conio.h>
+int sum(int *,int);
+int main()
+{
+    int size,i;
+    printf("enter size of array:");
+    scanf("%d",&size);
+    int arr[size];
+    printf("enter array:");
+    for(i=0;i<size;i++)
+    {
+        scanf("%d",&arr[i]);
+    }
+    printf("Sum of all elements in array is: %d",sum(arr,size));
+    getch();
+}
+int sum(int *p,int n)
+{
+    int i=0,s=0;
+    while(i<n)
+    {
+        s+=p[i];
+        i++;
+    }
+    return s;
+}
+
+
+9. Write a program to print the elements of an array in reverse order.
+
+#include<stdio.h>
+#include<conio.h>
+void reverse(int *,int);
+int main()
+{
+    int size,i;
+    printf("enter size of array:");
+    scanf("%d",&size);
+    int arr[size];
+    printf("enter array:");
+    for(i=0;i<size;i++)
+    {
+        scanf("%d",&arr[i]);
+    }
+    reverse(arr,size);
+    getch();
+}
+void reverse(int *p,int n)
+{
+    int i=n-1;
+    printf("array in reverse order is:");
+    while(i>=0)
+    {
+        printf("%d ",p[i]);
+        i--;
+    }
+}
+
+
+10. Write a program to print a string in reverse using a pointer
+
+#include<stdio.h>
+#include<conio.h>
+#include<string.h>
+void reverse(char *,int);
+int main()
+{
+    char str[100];
+    int len;
+    printf("enter string:");
+    gets(str);
+    len=strlen(str);
+    reverse(str,len);
+    getch();
+}
+void reverse(char *p,int l)
+{
+    int i=0;
+    printf("string in reverse order is:");
+    for(i=0;i<l;i++)
+    {
+        printf("%c",p[l-1-i]);
+    }
+}
+
+
+
+
+
